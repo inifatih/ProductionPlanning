@@ -1,0 +1,80 @@
+﻿@model ProductionPlanning.Models.PlanningInput
+
+@{
+    ViewData["Title"] = "Planning Produksi";
+}
+
+<h2>Planning Produksi</h2>
+<a asp-action="History"
+   class="btn btn-secondary ms-2">
+    History
+</a>
+
+<form asp-controller="Home" asp-action="Generate" method="post">
+
+    <div class="mb-2">
+        <label>Senin</label>
+        <input class="form-control" asp-for="Monday" />
+    </div>
+
+    <div class="mb-2">
+        <label>Selasa</label>
+        <input class="form-control" asp-for="Tuesday" />
+    </div>
+
+    <div class="mb-2">
+        <label>Rabu</label>
+        <input class="form-control" asp-for="Wednesday" />
+    </div>
+
+    <div class="mb-2">
+        <label>Kamis</label>
+        <input class="form-control" asp-for="Thursday" />
+    </div>
+
+    <div class="mb-2">
+        <label>Jumat</label>
+        <input class="form-control" asp-for="Friday" />
+    </div>
+
+    <div class="mb-2">
+        <label>Sabtu</label>
+        <input class="form-control" asp-for="Saturday" />
+    </div>
+
+    <div class="mb-3">
+        <label>Minggu</label>
+        <input class="form-control" asp-for="Sunday" />
+    </div>
+
+    <button class="btn btn-primary">
+        Generate Planning
+    </button>
+
+</form>
+
+@if (ViewBag.Result != null)
+{
+    var result = (Dictionary<string, int>)ViewBag.Result;
+
+    <hr />
+
+    <h4>Hasil Planning</h4>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Hari</th>
+            <th>Hasil</th>
+        </tr>
+
+        @foreach (var item in result)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@item.Value</td>
+            </tr>
+        }
+
+    </table>
+}

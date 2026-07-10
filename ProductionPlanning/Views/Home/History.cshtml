@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProductionPlanning.Models.Planning>
+
+<h2>History Planning</h2>
+
+@foreach (var p in Model)
+{
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <strong>Planning #@p.PlanningId</strong> -
+            @p.CreatedDate
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Planning Awal</th>
+                        <th>Planning Baru</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var d in p.Details)
+                    {
+                        <tr>
+                            <td>@d.DayName</td>
+                            <td>@d.OriginalValue</td>
+                            <td>@d.AdjustedValue</td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+}
